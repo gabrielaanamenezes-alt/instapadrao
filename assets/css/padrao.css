@@ -1,0 +1,162 @@
+/* =========================================================
+   Padrão visual — @gabrielabarroso.nutri
+   Base compartilhada por todos os templates (1080 x 1350)
+   ========================================================= */
+@import url('../fonts/fonts.css');
+
+:root {
+  /* Paleta */
+  --vinho:        #8C1C40; /* cor principal: fundos fortes e títulos */
+  --vinho-escuro: #5E0F29; /* sombras, texto em fundo claro */
+  --rosa:         #E2789F; /* destaques de palavras, tags */
+  --rosa-claro:   #F2C3D3; /* fundos suaves */
+  --blush:        #F9E3EA; /* fundos bem claros, cards */
+  --creme:        #FBF5F1; /* fundo neutro */
+  --branco:       #FFFFFF;
+
+  /* Tipografia */
+  --serif:  'Instrument Serif', 'Times New Roman', serif;
+  --sans:   'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --script: 'Caveat', cursive;
+
+  --gutter: 80px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #ddd; }
+
+/* ---------- Canvas ---------- */
+.post {
+  position: relative;
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  font-family: var(--sans);
+  color: var(--vinho-escuro);
+  background: var(--creme);
+}
+.post.story { height: 1920px; }
+
+.bg-vinho      { background: var(--vinho);      color: var(--branco); }
+.bg-rosa-claro { background: var(--rosa-claro); }
+.bg-blush      { background: var(--blush); }
+.bg-creme      { background: var(--creme); }
+
+/* textura sutil de papel */
+.post::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px);
+  background-size: 6px 6px; mix-blend-mode: multiply;
+}
+
+/* ---------- Cabeçalho e rodapé ---------- */
+.topo, .rodape {
+  position: absolute; left: var(--gutter); right: var(--gutter);
+  display: flex; justify-content: space-between; align-items: center;
+  font: 600 17px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase;
+  opacity: .8; z-index: 5;
+}
+.topo   { top: 56px; }
+.rodape { bottom: 56px; }
+.rodape .arrasta { display: flex; align-items: center; gap: 14px; }
+.rodape .arrasta::after { content: "⟶"; font-size: 26px; letter-spacing: 0; }
+
+/* ---------- Títulos ---------- */
+.titulo {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 150px; line-height: .86; letter-spacing: -.025em;
+  color: var(--vinho);
+}
+.bg-vinho .titulo { color: var(--branco); }
+.titulo .r  { color: var(--rosa); }          /* palavra em rosa  */
+.titulo .v  { color: var(--vinho); }         /* palavra em vinho */
+.titulo .b  { color: var(--branco); }
+.titulo em  { font-style: italic; }
+.titulo.md  { font-size: 112px; }
+.titulo.sm  { font-size: 84px; line-height: .95; }
+.titulo.xl  { font-size: 196px; }
+
+/* sublinhado “marca-texto” */
+.marca { background: linear-gradient(transparent 62%, var(--rosa-claro) 62% 92%, transparent 92%); }
+.bg-vinho .marca { background: linear-gradient(transparent 62%, rgba(226,120,159,.55) 62% 92%, transparent 92%); }
+
+/* ---------- Texto de apoio ---------- */
+.texto { font: 500 26px/1.45 var(--sans); }
+.texto b, .texto strong { font-weight: 700; }
+.mini  { font: 600 16px/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+
+/* manuscrito */
+.manuscrito {
+  font-family: var(--script); font-weight: 700; font-size: 54px; line-height: 1;
+  color: var(--rosa); display: inline-block; transform: rotate(-6deg);
+}
+.bg-vinho .manuscrito { color: var(--rosa-claro); }
+
+/* ---------- Caixas ---------- */
+.caixa {                         /* caixinha com contorno, como uma etiqueta */
+  border: 2.5px solid currentColor; padding: 18px 24px;
+  font: 600 22px/1.4 var(--sans); background: var(--branco); color: var(--vinho);
+}
+.bg-vinho .caixa { background: transparent; color: var(--branco); }
+.caixa b { color: var(--rosa); }
+
+.tag {                           /* faixa rosa de destaque */
+  display: inline-block; background: var(--rosa); color: var(--branco);
+  font: 600 30px/1 var(--sans); padding: 16px 30px; letter-spacing: .01em;
+}
+.tag.vinho { background: var(--vinho); }
+.tag.branca { background: var(--branco); color: var(--vinho); }
+
+.card {
+  background: var(--branco); padding: 40px 44px;
+  box-shadow: 0 18px 40px rgba(94,15,41,.14);
+}
+
+/* numeração 01, 02, 03 */
+.num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 78px; height: 78px; background: var(--rosa); color: var(--branco);
+  font: 400 50px/1 var(--serif); flex: none;
+}
+
+/* ---------- Balões de conversa ---------- */
+.balao {
+  position: relative; background: var(--branco); color: var(--vinho-escuro);
+  border-radius: 34px; padding: 34px 40px; font: 500 27px/1.45 var(--sans);
+  box-shadow: 0 14px 30px rgba(0,0,0,.12); max-width: 760px;
+}
+.balao::after {
+  content: ""; position: absolute; bottom: -22px; left: 60px;
+  border: 22px solid transparent; border-top-color: var(--branco); border-bottom: 0;
+}
+.balao.resposta { background: var(--rosa); color: var(--branco); margin-left: auto; }
+.balao.resposta::after { left: auto; right: 60px; border-top-color: var(--rosa); }
+.balao .quem { display: block; font: 700 17px/1 var(--sans); letter-spacing: .16em;
+  text-transform: uppercase; margin-bottom: 14px; opacity: .7; }
+
+/* ---------- Foto recortada ---------- */
+.foto {
+  position: absolute; background: var(--branco); padding: 16px;
+  box-shadow: 0 22px 44px rgba(94,15,41,.22);
+}
+.foto .img {
+  width: 100%; height: 100%; background-size: cover; background-position: center;
+  /* placeholder: troque por style="background-image:url(../assets/fotos/x.jpg)" */
+  background-color: var(--rosa-claro);
+  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,.35) 0 14px, transparent 14px 28px);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 40px/1 var(--script); color: var(--vinho); text-align: center;
+}
+.foto.recorte { padding: 0; box-shadow: none; filter: drop-shadow(0 20px 30px rgba(94,15,41,.25)); }
+.fita {                        /* fita adesiva rosa no canto da foto */
+  position: absolute; width: 170px; height: 46px; background: rgba(226,120,159,.7);
+  z-index: 3;
+}
+
+/* ilustrações (SVG inline) */
+.ilustra { position: absolute; z-index: 2; }
+
+/* utilitários */
+.abs { position: absolute; }
+.centro { text-align: center; }
+.z { z-index: 4; }
